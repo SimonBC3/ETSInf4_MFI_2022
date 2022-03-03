@@ -1,14 +1,15 @@
 fmod QUIZIFY-HASKELL is
  protecting NAT .
  
- sorts Opt OptNat OptNatList .
+ sorts Opt OptNat OptNatList NoItem .
  
  ops A B C D ? : -> Opt [ctor] .
  op _<_> : Opt Nat -> OptNat [ctor] .
  op nil : -> OptNatList [ctor] .
  op _@_ : OptNat OptNatList -> OptNatList [ctor] .
+ op NoItem : NoItem -> NoItem .
  
- var L : OptNatList . vars N M : Nat . var O : Opt .
+ var L : OptNatList . vars N M : Nat . var O : Opt . var NoItem : NoItem .
  
  op add : OptNatList Nat -> OptNatList .
  eq add(nil,N) = ? < N > @ nil .
@@ -20,4 +21,5 @@ fmod QUIZIFY-HASKELL is
  eq first?(B < N > @ L) = first?(L) .
  eq first?(C < N > @ L) = first?(L) .
  eq first?(D < N > @ L) = first?(L) .
+ eq first?(nil) = NoItem .
 endfm
