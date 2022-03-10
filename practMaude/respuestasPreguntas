@@ -1,0 +1,52 @@
+(Pregunta 1) ¿Qu´e se obtiene tras ejecutar el siguiente comando y qu´e significa?
+               result [Nat]: first?(nil) devuelve el comando con una lista vacia.
+               
+(Pregunta 2) ¿C´omo lo resolver´ıas con una constante nueva, p.ej. “NoItem?”?
+                añado op NoItem : -> Nat . //defino const
+                añado eq first?(nil) = NoItem . //añado eq para resolver
+                
+(Pregunta 3) Muestra un ejemplo de un t´ermino que sea de tipo Opt pero no Opt? y un t´ermino que
+sea de tipo OptNatList pero no OptNat ni Opt.(Pregunta 8) Usando tus propias palabras, ¿qu´e se obtiene cuando se ejecuta el siguiente
+comando y por qu´e?
+Maude> rew in QUIZIFY-CONCURRENT : any?(? < 1 > @ ? < 2 >) .
+                opt y no opt? no hay //opt < opt? izq engloba dcha
+                OptNatList pero no OptNat ni Opt nil
+                
+(Pregunta 4) ¿Para qu´e nos puede servir diferenciar el subtipo Opt dentro del tipo Opt??
+                Encontrar ?
+                
+(Pregunta 5) Para una lista de 2 preguntas, muestra algunos valores que pueden tomar
+una variable de tipo Opt?NatList y una variable de tipo OptNatList
+
+                (? < 1 > @ B < 2 > @ nil)
+(Pregunta 6) ¿Qu´e tipo se obtiene tras ejecutar el siguiente comando y qu´e significa?
+                [Nat]: first?(A < 1 > @ B < 2 >) //lista irreducible como en 2
+                
+(Pregunta 7) ¿Podr´ıas resolverlo de forma parecida a la pregunta 2?
+                Añado 
+                op first? : OptNatList ~> Nat .
+                eq first?(L @ A < M > @ L2) = NoItem .
+
+(Pregunta 8) Usando tus propias palabras, ¿qu´e se obtiene cuando se ejecuta el siguiente
+comando y por qu´e?
+Maude> rew in QUIZIFY-CONCURRENT : any?(? < 1 > @ ? < 2 >) .
+                result NzNat: 1 // primer resultado ya que uso rew
+                
+(Pregunta 9) ¿Y con el siguiente comando?
+Maude> search in QUIZIFY-CONCURRENT : any?(? < 1 > @ D < 2 > @ ? < 3 >) =>* X:Nat .
+
+            //Los estados posibles.
+                Solution 1 (state 1)
+states: 2  rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+X:Nat --> 2
+
+Solution 2 (state 3)
+states: 4  rewrites: 3 in 0ms cpu (0ms real) (~ rewrites/second)
+X:Nat --> 3
+
+No more solutions.
+states: 5  rewrites: 4 in 0ms cpu (0ms real) (~ rewrites/second)
+
+(Pregunta 10) ¿Y con el siguiente comando?
+Maude> search in QUIZIFY-CONCURRENT : any?(A < 1 > @ ? < 2 > @ ? < 3 >) =>* X:Nat .
+                //Lo mismo que en 9 pero cambiando los valores.
