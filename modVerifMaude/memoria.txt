@@ -1,0 +1,20 @@
+Pregunta 3 Resultado search false | ? < 1 > @ ? < 2 > @ ? < 3 > =>* B | L .
+    Devuelve todos las soluciones que puede dar esa lista. (112)
+
+Pregunta 4 Resultado search false | ? < 1 > @ ? < 2 > @ ? < 3 > =>* B | L1? @ * < N > @ L2? .
+    Devuelve todos los estados a los que puede llegar que tengan una 
+    pregunta en proceso de ser respondida. (144)
+
+Pregunta 5 search false | ? < 1 > @ ? < 2 > @ ? < 3 > =>* true | L1? @ # < N > @ L2? @ # < M > @ L3? .
+    Comprueba si hay algun estado en el que haya dos preguntas siendo respondidas al mismo tiempo.
+    El programa está bien hecho y no encuentra solucion.
+
+Pregunta 7 search void | empty | ? < 1 > @ ? < 2 > @ ? < 3 > =>* void | empty | A < 1 > @ B < 2 > @ C < 3 > .
+    Devuelve la solucion buscada, que es todas las preguntas contestadas.
+
+Pregunta 8 search void | empty | ? < 1 > @ ? < 2 > @ ? < 3 > =>* N | MS | L? .
+    Devuelve todas las combinaciones de reglas posibles.
+
+Pregunta 9 search void | empty | ? < 1 > @ ? < 2 > @ ? < 3 > =>* N? | MS | L1? @ # < N > @ L2? @ # < M > @ L3? .
+    Comprueba que no se puede llegar a un estado en el que haya dos preguntas preparadas para responder.
+    No encuentra solucion.

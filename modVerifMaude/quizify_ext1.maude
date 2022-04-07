@@ -3,7 +3,7 @@ protecting NAT .
 sorts Opt OptV Opt? .
 op ? : -> Opt? [ctor] .
 op * : -> OptV [ctor] .
-op # : -> Opt [ctor].
+op # : -> Opt [ctor] .
 ops A B C D : -> Opt [ctor] .
 subsort Opt < OptV < Opt? .
 
