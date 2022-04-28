@@ -1,14 +1,12 @@
 MODULE main
 VAR
     semaphore : boolean;
-    turn1 : boolean;
-    turn2 : boolean;
-    question1 : process question(semaphore);
-    question2 : process question(semaphore);
+    turn : 1..2;
+    question1 : process question(1, semaphore, turn);
+    question2 : process question(2, semaphore, turn);
 ASSIGN
     init(semaphore) := FALSE;
-    init(turn1) := FALSE;
-    init(turn2) := FALSE;
+    init(turn) := 1;
 SPEC
     AG !(question1.state = answering & question2.state = answering) ---safety
 SPEC
@@ -16,7 +14,7 @@ SPEC
 SPEC
     AG (question2.state = request -> AF question2.state = answering) ---liveness2
 
-MODULE question(semaphore)
+MODULE question(id,semaphore,turn)
 VAR
     state : {noanswer,request,answering,a,b,c,d};
 ASSIGN
@@ -24,7 +22,7 @@ ASSIGN
     next(state) :=
         case
             state = noanswer : {noanswer,request};
-            state = request & !semaphore : answering;
+            state = request & !semaphore & turn = id : answering;
             state = answering : {a,b,c,d};
             state = a : {a,request};
             state = b : {b,request};
@@ -34,9 +32,17 @@ ASSIGN
     esac;
     next(semaphore) :=
         case    
-        state = request & !semaphore : TRUE;
+        state = request & !semaphore & turn = id : TRUE;
         state = answering : FALSE;
         TRUE : semaphore;
+    esac;
+    next(turn) := 
+        case
+            turn = 1 & id = 1 & state != request : 2;
+            turn = 2 & id = 2 & state != request : 1;
+            turn = 1 & semaphore = TRUE : 2;
+            turn = 2 & semaphore = TRUE : 1;
+            TRUE : turn; 
     esac;
 FAIRNESS
 running
