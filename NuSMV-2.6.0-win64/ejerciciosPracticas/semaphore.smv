@@ -32,4 +32,4 @@ ASSIGN
             TRUE : semaphore;
     esac;
 FAIRNESS
-running
+running 

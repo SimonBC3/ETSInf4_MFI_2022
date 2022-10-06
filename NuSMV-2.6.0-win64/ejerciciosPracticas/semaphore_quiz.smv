@@ -1,5 +1,8 @@
 MODULE main
 VAR
+    ch1 : process channel(); --- Channel question 1 to/from server
+    ch2 : process channel(); --- Channel question 2 to/from server
+    server : process server(turn,ch1.q2s,ch1.s2q,ch2.q2s,ch2.s2q);
     semaphore : boolean;
     turn : 1..2;
     question1 : process question(1, semaphore, turn);
